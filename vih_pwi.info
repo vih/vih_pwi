@@ -1,0 +1,11 @@
+core = "7.x"
+description = "Integrate albums from Google Picasa Web Album."
+name = "VIH Picasa Web Album Integrator"
+package = "VIH"
+php = "5.2.4"
+version = "7.x-0.2"
+
+dependencies[] = libraries
+dependencies[] = colorbox
+
+files[] = drush/vih_pwi.drush.inc
