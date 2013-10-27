@@ -24,6 +24,9 @@ function vih_pwi_help($path, $arg) {
   }
 }
 
+/**
+ * Implements hook_block_info().
+ */
 function vih_pwi_block_info() {
   $blocks['vih_pwi'] = array(
     'info' => t('Picasa Webalbums'), 
@@ -33,6 +36,9 @@ function vih_pwi_block_info() {
   return $blocks;
 }
 
+/**
+ * Implements hook_block_view().
+ */
 function vih_pwi_block_view($delta = '') {
   $block = array();
 
@@ -46,6 +52,7 @@ function vih_pwi_block_view($delta = '') {
 }
 
 /**
+ * Implements hook_block_configure().
  * @todo Write validator handler
  */
 function vih_pwi_block_configure($delta = '') {
@@ -79,6 +86,9 @@ function vih_pwi_block_configure($delta = '') {
   return $form;
 }
 
+/**
+ * Implements hook_block_save().
+ */
 function vih_pwi_block_save($delta = '', $edit = array()) {
   if ($delta == 'vih_pwi') {
     variable_set('vih_pwi_picasa_user', $edit['vih_pwi']['vih_pwi_picasa_user']);
