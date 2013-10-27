@@ -83,7 +83,7 @@ function vih_pwi_block_save($delta = '', $edit = array()) {
   if ($delta == 'vih_pwi') {
     variable_set('vih_pwi_picasa_user', $edit['vih_pwi']['vih_pwi_picasa_user']);
     variable_set('vih_pwi_thumbsize', $edit['vih_pwi']['vih_pwi_thumbsize']);
-    variable_set('vih_pwi_max_results', $edit['vih_pwi']['vih_pwi_max_results']);        
+    variable_set('vih_pwi_max_results', $edit['vih_pwi']['vih_pwi_max_results']);
   }
 }
 
@@ -91,38 +91,38 @@ function vih_pwi_block_save($delta = '', $edit = array()) {
  * Implementation of hook_views_api().
  */
 function vih_pwi_view() {
-    if (variable_get('vih_pwi_picasa_user', '') == '') {
-      drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
-    } 
-    
-    drupal_add_css(libraries_get_path('jquery.pwi') . '/css/pwi.css');
-    drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.pwi.js');
-    drupal_add_js('
+  if (variable_get('vih_pwi_picasa_user', '') == '') {
+    drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
+  } 
+
+  drupal_add_css(libraries_get_path('jquery.pwi') . '/css/pwi.css');
+  drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.pwi.js');
+  drupal_add_js('
 (function ($) {
-    $(document).ready(function() {
-        $("#picasaweb").pwi({
-            username: \''.check_plain(variable_get('vih_pwi_picasa_user')).'\',
-            maxResults: '.check_plain(variable_get('vih_pwi_max_results', 12)).',
-            showAlbumDescription: false,
-            showPhotoCaption: false,
-            photoCaptionLength: 5,
-            thumbSize: '.check_plain(variable_get('vih_pwi_thumbsize', 160)).',
-            thumbCrop: 1,
-            showPhotoDate: false,
-            showSlideshowLink: true,
-            labels: {photo:"'.t('photo').'",	//-- override labels, to translate into your required language
-                     photos: "'.t('photos').'",
-                     albums: "'.t('Back to albums').'",
-                     slideshow: "'.t('Show slideshow').'",
-                     loading: "'.t('Fetching pictures').'",
-                     page: "'.t('Page').'",
-                     prev: "'.t('Previous').'",
-                     next: "'.t('Next').'",
-                     devider: "|"
-            },
-            months: ["'.t('January').'","'.t('February').'","'.t('March').'","'.t('April').'","'.t('May').'","'.t('June').'","'.t('July').'","'.t('August').'","'.t('September').'","'.t('October').'","'.t('November').'","'.t('December').'"]
-        });
+  $(document).ready(function() {
+    $("#picasaweb").pwi({
+      username: \''.check_plain(variable_get('vih_pwi_picasa_user')).'\',
+      maxResults: '.check_plain(variable_get('vih_pwi_max_results', 12)).',
+      showAlbumDescription: false,
+      showPhotoCaption: false,
+      photoCaptionLength: 5,
+      thumbSize: '.check_plain(variable_get('vih_pwi_thumbsize', 160)).',
+      thumbCrop: 1,
+      showPhotoDate: false,
+      showSlideshowLink: true,
+      labels: {photo:"'.t('photo').'",	//-- override labels, to translate into your required language
+        photos: "'.t('photos').'",
+        albums: "'.t('Back to albums').'",
+        slideshow: "'.t('Show slideshow').'",
+        loading: "'.t('Fetching pictures').'",
+        page: "'.t('Page').'",
+        prev: "'.t('Previous').'",
+        next: "'.t('Next').'",
+        devider: "|"
+      },
+      months: ["'.t('January').'","'.t('February').'","'.t('March').'","'.t('April').'","'.t('May').'","'.t('June').'","'.t('July').'","'.t('August').'","'.t('September').'","'.t('October').'","'.t('November').'","'.t('December').'"]
     });
+  });
 })(jQuery);', 'inline');
-    return '<div id="picasaweb"></div>';
+  return '<div id="picasaweb"></div>';
 }

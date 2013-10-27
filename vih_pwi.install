@@ -12,3 +12,12 @@ function vih_pwi_requirements($phase) {
   }
   return $requirements;
 }
+
+/**
+ * Implements hook_uninstall().
+ */
+function vih_pwi_uninstall() {
+  variable_del('vih_pwi_picasa_user');
+  variable_del('vih_pwi_thumbsize');
+  variable_del('vih_pwi_max_results');
+}
