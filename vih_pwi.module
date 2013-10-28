@@ -24,13 +24,21 @@ function vih_pwi_help($path, $arg) {
   }
 }
 
+/* 
+ * Implements hook_ctools_plugin_directory().
+ */ 
+function vih_pwi_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
 /**
  * Implements hook_block_info().
  */
 function vih_pwi_block_info() {
   $blocks['vih_pwi'] = array(
-    'info' => t('Picasa Webalbums'), 
-    // DRUPAL_CACHE_PER_ROLE will be assumed.
+    'info' => t('Picasa Webalbums'),
   );
 
   return $blocks;
@@ -45,7 +53,7 @@ function vih_pwi_block_view($delta = '') {
   switch ($delta) {
     case 'vih_pwi':
       $block['subject'] = '';
-      $block['content'] = vih_pwi_view();
+      $block['content'] = _vih_pwi_write_this_blok();
       break;
   }
   return $block;
@@ -100,7 +108,7 @@ function vih_pwi_block_save($delta = '', $edit = array()) {
 /**
  * Implementation of hook_views_api().
  */
-function vih_pwi_view() {
+function _vih_pwi_write_this_blok() {
   if (variable_get('vih_pwi_picasa_user', '') == '') {
     drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
   } 

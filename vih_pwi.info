@@ -5,7 +5,9 @@ package = "VIH"
 php = "5.2.4"
 version = "7.x-0.2"
 
+dependencies[] = ctools
 dependencies[] = libraries
 dependencies[] = colorbox
 
+files[] = vih_pwi.module
 files[] = drush/vih_pwi.drush.inc
