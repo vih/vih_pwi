@@ -56,6 +56,25 @@ function vih_pwi_libraries_info() {
   return $libraries;
 }
 
+/**
+ * Check if the PWI library has been loaded, and warn if missing.
+ *
+ * @return bool
+ *   A boolean indicating the Neat Scrollbar loaded status.
+ */
+function pwi_loaded() {
+  if (($library = libraries_load('pwi')) && !empty($library['loaded'])) {
+    return TRUE;
+  }
+  elseif (user_access('administer permissions')) {
+    // OOPS Warning!
+    // Alert the authorized user/administrator to the abscence of the library.
+    drupal_set_message(t('The PWI Library could not be found.
+      Please check the installation instructions and the <a href="@status">Status Report</a>.',
+      array('@status' => url('admin/reports/status'))), 'warning');
+  }
+}
+
 /* 
  * Implements hook_ctools_plugin_directory().
  */ 
@@ -141,12 +160,10 @@ function vih_pwi_block_save($delta = '', $edit = array()) {
  * Implementation of hook_views_api().
  */
 function _vih_pwi_write_this_blok() {
-  if (variable_get('vih_pwi_picasa_user', '') == '') {
-    drupal_set_message(t('Picasa user has not been set, so the block cannot be shown'), 'error');
-  } 
+  if (!pwi_loaded()) {
+    return;
+  }
 
-  drupal_add_css(libraries_get_path('jquery.pwi') . '/css/pwi.css');
-  drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.pwi.js');
   drupal_add_js('
 (function ($) {
   $(document).ready(function() {

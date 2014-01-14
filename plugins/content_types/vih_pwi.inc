@@ -80,8 +80,10 @@ function vih_pwi_vih_pwi_render($subtype, $conf, $panel_args, $context = NULL) {
   $block->title = '';
   $block->content = '';
 
-  drupal_add_css(libraries_get_path('jquery.pwi') . '/css/pwi.css');
-  drupal_add_js(libraries_get_path('jquery.pwi') . '/js/jquery.pwi.js');
+  if (!pwi_loaded()) {
+    return;
+  }
+  
   drupal_add_js('
 (function ($) {
   $(document).ready(function() {
