@@ -28,7 +28,7 @@ function vih_pwi_help($path, $arg) {
  * Implements hook_libraries_info();
  */
 function vih_pwi_libraries_info() {
-  $libraries['pwi'] = array(
+  $libraries['jquery.pwi'] = array(
     'name' => 'PWI',
     'vendor url' => 'https://code.google.com/p/pwi/',
     'download url' => 'https://code.google.com/p/pwi/downloads/list',
@@ -63,11 +63,10 @@ function vih_pwi_libraries_info() {
  *   A boolean indicating the Neat Scrollbar loaded status.
  */
 function pwi_loaded() {
-  if (($library = libraries_load('pwi')) && !empty($library['loaded'])) {
+  if (($library = libraries_load('jquery.pwi')) && !empty($library['loaded'])) {
     return TRUE;
   }
   elseif (user_access('administer permissions')) {
-    // OOPS Warning!
     // Alert the authorized user/administrator to the abscence of the library.
     drupal_set_message(t('The PWI Library could not be found.
       Please check the installation instructions and the <a href="@status">Status Report</a>.',
@@ -75,9 +74,9 @@ function pwi_loaded() {
   }
 }
 
-/* 
+/**
  * Implements hook_ctools_plugin_directory().
- */ 
+ */
 function vih_pwi_ctools_plugin_directory($owner, $plugin_type) {
   if ($owner == 'ctools' && $plugin_type == 'content_types') {
     return 'plugins/' . $plugin_type;
@@ -127,20 +126,20 @@ function vih_pwi_block_configure($delta = '') {
       '#title' => t('Picasa User'),
       '#required' => true,
       '#default_value' => variable_get('vih_pwi_picasa_user', ''),
-    ); 
+    );
     // @todo create a select box with available sizes
     $form['vih_pwi']['vih_pwi_thumbsize'] = array(
       '#type' => 'textfield',
       '#title' => t('Thumbnail size'),
       '#required' => true,
       '#default_value' => variable_get('vih_pwi_thumbsize', 160),
-    ); 
+    );
     $form['vih_pwi']['vih_pwi_max_results'] = array(
       '#type' => 'textfield',
       '#title' => t('Max results'),
       '#required' => true,
       '#default_value' => variable_get('vih_pwi_max_results', 12),
-    ); 
+    );
   }
   return $form;
 }
