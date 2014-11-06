@@ -33,23 +33,23 @@ function vih_pwi_libraries_info() {
     'vendor url' => 'https://code.google.com/p/pwi/',
     'download url' => 'https://code.google.com/p/pwi/downloads/list',
     'version arguments' => array(
-      'file' => 'js/jquery.pwi.js',
+      'file' => 'jquery.pwi/js/jquery.pwi.js',
       'pattern' => '/\@revision ((\d+)\.(\d+)\.(\d+))/',
     ),
     'files' => array(
       'js' => array(
-        'js/jquery.pwi.js',
+        'jquery.pwi/js/jquery.pwi.js',
       ),
       'css' => array(
-        'css/pwi.css',
+        'jquery.pwi/css/pwi.css',
       ),
     ),
     // Optional: Register files to auto-load for your module. All files must be
     // keyed by module, and follow the syntax of the 'files' property.
     'integration files' => array(
       'vih_pwi' => array(
-        'css' => array('css/pwi.css'),
-        'js' => array('js/jquery.pwi.js'),
+        'css' => array('jquery.pwi/css/pwi.css'),
+        'js' => array('jquery.pwi/js/jquery.pwi.js'),
       ),
     ),
   );
