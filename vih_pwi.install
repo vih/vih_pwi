@@ -10,7 +10,7 @@ function vih_pwi_requirements($phase) {
   if ($phase == 'runtime') {
     $library = libraries_detect('jquery.pwi');
     $requirements['pwi'] = array(
-      'title' => $t('PWI'),
+      'title' => $t('JQuery PWI'),
     );
     if ($library['installed']) {
       $requirements['pwi']['value'] = $library['version'];
