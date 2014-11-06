@@ -68,7 +68,7 @@ function pwi_loaded() {
   }
   elseif (user_access('administer permissions')) {
     // Alert the authorized user/administrator to the abscence of the library.
-    drupal_set_message(t('The PWI Library could not be found.
+    drupal_set_message(t('The JQuery PWI Library could not be found.
       Please check the installation instructions and the <a href="@status">Status Report</a>.',
       array('@status' => url('admin/reports/status'))), 'warning');
   }
