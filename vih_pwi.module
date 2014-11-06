@@ -29,7 +29,7 @@ function vih_pwi_help($path, $arg) {
  */
 function vih_pwi_libraries_info() {
   $libraries['jquery.pwi'] = array(
-    'name' => 'PWI',
+    'name' => 'Jquery PWI',
     'vendor url' => 'https://code.google.com/p/pwi/',
     'download url' => 'https://code.google.com/p/pwi/downloads/list',
     'version arguments' => array(
